@@ -1,0 +1,182 @@
+/**
+ * Drawer Component Style for uxcore
+ * @author kewenlei
+ *
+ * Copyright 2017-2018, Uxcore Team, Alinw.
+ * All rights reserved.
+ */
+
+@__drawer-prefix-cls: kuma-drawer;
+.@{__drawer-prefix-cls}-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, .4);
+  height: 100%;
+  z-index: 1000;
+  filter: alpha(opacity=30);
+}
+
+.@{__drawer-prefix-cls} {
+  position: fixed;
+  height: 100%;
+  min-width: 263px;
+  background: #fff;
+  overflow: hidden;
+  z-index: 1001;
+  &-right {
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  &-left {
+    left: 0;
+    top: 0;
+    bottom: 0;
+  } // &, // * {
+  //   -webkit-transition: -webkit-transform 0.3s linear; // transition: -webkit-transform 0.3s linear;
+  //   transition: transform 0.3s linear;
+  // }
+  &-header {
+    border-bottom: 1px solid rgba(31, 56, 88, 0.1);
+  }
+  &-title {
+    padding: 20px 0 10px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, .8);
+    text-indent: 24px;
+  }
+  &-content {
+    width: 100%;
+    height: 100%;
+  }
+  &-body {
+    padding: 16px 24px 32px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  &-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 16px 16px 24px;
+    text-align: right;
+    border-top: 1px solid rgba(31, 56, 88, .1);
+    button+button {
+      margin-left: 8px;
+      margin-bottom: 0;
+    }
+  }
+  &-close {
+    position: absolute;
+    right: 13px;
+    top: 8px;
+    background: 0 0;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+    outline: 0;
+    color: rgba(0, 0, 0, .6);
+  }
+  &-close-x {
+    color: rgba(31, 56, 88, .4);
+    font-size: 12px;
+  }
+  &-close-x:after {
+    content: "\e6b0";
+  }
+}
+
+@keyframes dialogSlideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes dialogSlideOutRight {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(30px);
+  }
+}
+
+@keyframes dialogSlideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes dialogSlideOutLeft {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(-30px);
+  }
+}
+
+.dialogSlideRight-enter,
+.dialogSlideRight-appear {
+  opacity: 0;
+  transform: translateX(50px);
+  animation-timing-function: @transition-ease;
+  animation-duration: .5s;
+}
+
+.dialogSlideRight-enter-active,
+.dialogSlideRight-appear-active {
+  animation-name: dialogSlideInRight;
+}
+
+.dialogSlideRight-leave {
+  opacity: 1;
+  animation-timing-function: @transition-ease;
+  animation-duration: .5s;
+}
+
+.dialogSlideRight-leave-active {
+  animation-name: dialogSlideOutDown;
+}
+
+.dialogSlideLeft-enter,
+.dialogSlideLeft-appear {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation-timing-function: @transition-ease;
+  animation-duration: .5s;
+}
+
+.dialogSlideLeft-enter-active,
+.dialogSlideLeft-appear-active {
+  animation-name: dialogSlideInLeft;
+}
+
+.dialogSlideLeft-leave {
+  opacity: 1;
+  animation-timing-function: @transition-ease;
+  animation-duration: .5s;
+}
+
+.dialogSlideLeft-leave-active {
+  animation-name: dialogSlideOutLeft;
+}
