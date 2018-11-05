@@ -30,7 +30,6 @@ class Drawer extends React.Component {
       className,
       size,
       width,
-      children,
       ...props
     } = this.props;
 
@@ -39,7 +38,6 @@ class Drawer extends React.Component {
     const commonProps = {
       prefixCls,
       width: this.handleWidth(),
-      children,
       transitionName: `dialogSlide${placementStr}`,
       ...props,
     };

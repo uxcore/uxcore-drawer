@@ -27,7 +27,13 @@ class Demo extends React.Component {
           title="抽屉组件"
           size="small"
           placement="left"
-        />
+        >
+          <p>11111111</p>
+          <p>11111111</p>
+          <p>11111111</p>
+          <p>11111111</p>
+          
+        </Drawer>
       </div>
     );
   }
