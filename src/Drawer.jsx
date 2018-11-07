@@ -32,7 +32,6 @@ class Drawer extends React.Component {
       width,
       ...props
     } = this.props;
-
     const placementStr = this.firstUpperCase(placement);
 
     const commonProps = {
@@ -75,6 +74,7 @@ class Drawer extends React.Component {
     const drawerOptions = this.handleOptions();
     return (
       <Dialog
+        ref={(c) => { this.drawer = c; }}
         className={classNames}
         {...drawerOptions}
       />

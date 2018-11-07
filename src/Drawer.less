@@ -27,6 +27,16 @@
   background: #fff;
   overflow: hidden;
   z-index: 1001;
+  &-wrap {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+  }
   &-right {
     right: 0;
     top: 0;
@@ -36,10 +46,7 @@
     left: 0;
     top: 0;
     bottom: 0;
-  } // &, // * {
-  //   -webkit-transition: -webkit-transform 0.3s linear; // transition: -webkit-transform 0.3s linear;
-  //   transition: transform 0.3s linear;
-  // }
+  }
   &-header {
     border-bottom: 1px solid rgba(31, 56, 88, 0.1);
   }
@@ -89,6 +96,10 @@
   &-close-x:after {
     content: "\e6b0";
   }
+  &-mask-hidden,
+  &-wrap-hidden>&-mask {
+    display: none;
+  }
 }
 
 @keyframes dialogSlideInRight {
@@ -135,6 +146,57 @@
   }
 }
 
+@keyframes dialogSlideOutRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+@keyframes dialogFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dialogFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.dialogFade-enter,
+.dialogFade-appear {
+  opacity: 0;
+  animation-timing-function: @transition-ease;
+  animation-duration: .4s;
+}
+
+.dialogFade-enter-active,
+.dialogFade-appear-active {
+  animation-name: dialogFadeIn;
+}
+
+.dialogFade-leave {
+  opacity: 1;
+  animation-timing-function: @transition-ease;
+  animation-duration: .4s;
+}
+
+.dialogFade-leave-active {
+  animation-name: dialogFadeOut;
+}
+
 .dialogSlideRight-enter,
 .dialogSlideRight-appear {
   opacity: 0;
@@ -155,7 +217,7 @@
 }
 
 .dialogSlideRight-leave-active {
-  animation-name: dialogSlideOutDown;
+  animation-name: dialogSlideOutRight;
 }
 
 .dialogSlideLeft-enter,
