@@ -9,7 +9,7 @@
 import React from 'react';
 import { Button, Form } from 'uxcore';
 import Drawer from '../src';
-import '../style';
+// import '../style';
 
 const {
   Constants,
@@ -94,6 +94,46 @@ class Demo extends React.Component {
             <li>菜单四</li>
             <li>菜单五</li>
             <li>菜单六</li>
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+            <li>菜单五</li>
+            <li>菜单六</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+            <li>菜单五</li>
+            <li>菜单六</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+            <li>菜单五</li>
+            <li>菜单六</li>
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+            <li>菜单五</li>
+            <li>菜单六</li>
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+            <li>菜单五</li>
+            <li>菜单六</li>
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+            <li>菜单五</li>
+            <li>菜单六</li>
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+            <li>菜单四</li>
+            <li>菜单五</li>
+            <li>菜单六</li>
           </ul>
         </Drawer>
 
@@ -120,6 +160,7 @@ class Demo extends React.Component {
           maskClosable={false}
           onCancel={this.closeDrawer.bind(this, 'visible')}
           footer={[
+            <p className="showNum">已选：33333</p>,
             <Button onClick={this.handleOk} key="submit">提交</Button>,
             <Button type="secondary" onClick={this.handleChangeMode} key="changeMode">转换模式</Button>,
           ]}

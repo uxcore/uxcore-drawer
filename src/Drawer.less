@@ -59,11 +59,13 @@
   &-content {
     width: 100%;
     height: 100%;
+    overflow: auto;
   }
   &-body {
     padding: 16px 24px 32px;
     font-size: 12px;
     line-height: 1.5;
+    overflow: auto;
   }
   &-footer {
     position: absolute;
@@ -75,6 +77,10 @@
     border-top: 1px solid rgba(31, 56, 88, .1);
     button+button {
       margin-left: 8px;
+      margin-bottom: 0;
+    }
+    button {
+      margin-top: 0;
       margin-bottom: 0;
     }
   }
