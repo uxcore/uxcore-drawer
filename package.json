@@ -42,10 +42,10 @@
     "react": "16.x",
     "react-dom": "16.x",
     "react-test-renderer": "16.x",
-    "uxcore": "^0.21.36",
     "uxcore-icon": "*",
     "uxcore-kuma": "*",
-    "uxcore-tools": "^0.3.3"
+    "uxcore-tools": "^0.3.3",
+    "uxcore-dialog": "^0.8.5"
   },
   "dependencies": {
     "classnames": "^2.1.2",

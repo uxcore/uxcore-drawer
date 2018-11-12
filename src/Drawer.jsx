@@ -8,7 +8,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Dialog } from 'uxcore';
+import Dialog from 'uxcore-dialog';
 
 class Drawer extends React.Component {
   constructor(props) {
@@ -24,18 +24,17 @@ class Drawer extends React.Component {
   handleOptions() {
     const {
       placement,
-      prefixCls,
       showFooter,
       footer,
       className,
       size,
       width,
+      prefixCls,
       ...props
     } = this.props;
     const placementStr = this.firstUpperCase(placement);
 
     const commonProps = {
-      prefixCls,
       width: this.handleWidth(),
       transitionName: `dialogSlide${placementStr}`,
       ...props,
@@ -65,11 +64,9 @@ class Drawer extends React.Component {
   render() {
     const { props } = this;
     const { prefixCls, className, placement } = props;
-    const classNames = classnames({
+    const classNames = classnames(className, {
       [`${prefixCls}`]: true,
       [`${prefixCls}-${placement}`]: true,
-      className,
-
     });
     const drawerOptions = this.handleOptions();
     return (
@@ -78,6 +75,8 @@ class Drawer extends React.Component {
         className={classNames}
         {...drawerOptions}
       />
+
+
     );
   }
 }
