@@ -55,6 +55,7 @@ https://github.com/uxcore/uxcore-drawer
 | onCancel   | the callback when dialog closed  | function  | 无  |
 | width      | drawer width | String or Number |            |
 | footer     | footer of the drawer       | React.Element    |  |
+| showFooter | show footer of the drawer       | Boolean    |  true|
 | closable | whether show close button and click mask to close | Boolean | true |
 | maskClosable | whether click mask to close, this prop will be ignored if set closable prop to false | Boolean | true |
 | locale     | 国际化(包括 `zh-cn`, `en-us`, 和 `pl-pl`)    | String     |  `zh-cn` |

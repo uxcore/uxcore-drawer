@@ -60,13 +60,17 @@ class Drawer extends React.Component {
     return widthMap[size];
   }
 
-
   render() {
     const { props } = this;
-    const { prefixCls, className, placement } = props;
+    const {
+      prefixCls, className, placement, title, showFooter,
+    } = props;
     const classNames = classnames(className, {
       [`${prefixCls}`]: true,
       [`${prefixCls}-${placement}`]: true,
+      [`${prefixCls}-hastitle`]: !!title,
+      [`${prefixCls}-hasfooter`]: showFooter,
+
     });
     const drawerOptions = this.handleOptions();
     return (
@@ -75,8 +79,6 @@ class Drawer extends React.Component {
         className={classNames}
         {...drawerOptions}
       />
-
-
     );
   }
 }

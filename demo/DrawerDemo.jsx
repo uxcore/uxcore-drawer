@@ -161,11 +161,11 @@ class Demo extends React.Component {
           onCancel={this.closeDrawer.bind(this, 'visible')}
           footer={[
             <p className="showNum">已选：33333</p>,
-            <Button onClick={this.handleOk} key="submit">提交</Button>,
+            <Button onClick={this.handleOk.bind(this, 'visible')} key="submit">提交</Button>,
             <Button type="secondary" onClick={this.handleChangeMode} key="changeMode">转换模式</Button>,
           ]}
         >
-          <div className="demo-mode">
+          <div className="demo-mode" style={{ height: '1000px' }}>
             <Form
               ref={(c) => { this.form = c; }}
               className="demo-basic-form"
