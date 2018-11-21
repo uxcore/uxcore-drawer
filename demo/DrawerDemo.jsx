@@ -16,7 +16,6 @@ const {
   InputFormField: Input,
   DateFormField: Date,
   TextAreaFormField: TextArea,
-  OtherFormField: Other,
   Validators,
 } = Form;
 
@@ -43,8 +42,8 @@ class Demo extends React.Component {
     });
   }
 
-  handleOk(state) {
-    this.closeDrawer(state);
+  handleOk() {
+    this.closeDrawer();
   }
 
   showDrawer(state) {
@@ -76,6 +75,7 @@ class Demo extends React.Component {
         </div>
         <div className="basic-demo">
           <h2>可以放入操作，如表单的填写</h2>
+          <p>如果是包含操作行为，可像Uxcore.dialog一样自定义footer，且指定弹窗的maskClosable为false，防止误操作</p>
           <Button onClick={this.showDrawer.bind(this, 'visible')}>操作</Button>
         </div>
         <Drawer
@@ -83,6 +83,7 @@ class Demo extends React.Component {
           title="菜单导航"
           size="small"
           placement="left"
+          showFooter={false}
           closable={false}
           onCancel={this.closeDrawer.bind(this, 'menuVisible')}
         >
@@ -141,6 +142,7 @@ class Demo extends React.Component {
           title="基本信息展示"
           size="normal"
           placement="right"
+          showFooter={false}
           closable={false}
           onCancel={this.closeDrawer.bind(this, 'basicVisible')}
         >
@@ -154,8 +156,14 @@ class Demo extends React.Component {
           title="抽屉组件"
           size="normal"
           placement="right"
+          onOk={this.handleOk}
           maskClosable={false}
           onCancel={this.closeDrawer.bind(this, 'visible')}
+          footer={[
+            <p className="showNum">已选：33333</p>,
+            <Button onClick={this.handleOk.bind(this, 'visible')} key="submit">提交</Button>,
+            <Button type="secondary" onClick={this.handleChangeMode} key="changeMode">转换模式</Button>,
+          ]}
         >
           <div className="demo-mode" style={{ height: '1000px' }}>
             <Form
@@ -188,13 +196,6 @@ class Demo extends React.Component {
                   { validator: Validators.isNotEmpty, errMsg: '不能为空' },
                 ]}
               />
-              <Other>
-                <div className="other-footer">
-                  <p className="showNum">已选：33333</p>
-                  <Button onClick={this.handleOk.bind(this, 'visible')} key="submit">提交</Button>
-                  <Button type="secondary" onClick={this.handleChangeMode} key="changeMode">转换模式</Button>
-                </div>
-              </Other>
             </Form>
           </div>
 

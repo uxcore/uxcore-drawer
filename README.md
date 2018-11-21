@@ -51,8 +51,11 @@ https://github.com/uxcore/uxcore-drawer
 | visible    | current drawer's visible status  | Boolean    | false |
 | placement   | current drawer's direction  | left/right    | right |
 |size         | current drawer's size | small(230px)/normal(600px) | noraml|
-| onCancel   | the callback when drawer closed  | function  | 无  |
+| onOk       | the callback when ok clicked | function | 无 |
+| onCancel   | the callback when dialog closed  | function  | 无  |
 | width      | drawer width | String or Number |            |
+| footer     | footer of the drawer       | React.Element    |  |
+| showFooter | show footer of the drawer       | Boolean    |  true|
 | closable | whether show close button and click mask to close | Boolean | true |
 | maskClosable | whether click mask to close, this prop will be ignored if set closable prop to false | Boolean | true |
 | locale     | 国际化(包括 `zh-cn`, `en-us`, 和 `pl-pl`)    | String     |  `zh-cn` |
@@ -77,6 +80,7 @@ closeDrawer(state) {
   title="菜单导航"
   size="small"
   placement="left"
+  showFooter={false}
   closable={false}
   onCancel={this.closeDrawer.bind(this, 'menuVisible')}
     >
@@ -90,7 +94,7 @@ closeDrawer(state) {
       </ul>
   </Drawer>
 ```
-2、包含相应的操作，如果是包含操作行为，指定弹窗的maskClosable为false，防止误操作
+2、包含相应的操作，如果是包含操作行为，可像Uxcore.dialog一样自定义footer，且指定弹窗的maskClosable为false，防止误操作
 ```javascript
  <Drawer
       visible={visible}
@@ -100,6 +104,7 @@ closeDrawer(state) {
       onOk={this.handleOk}
       maskClosable={false}
       onCancel={this.closeDrawer.bind(this, 'visible')}
+      footer={}
     >
     <div className="demo-mode">
         <Form

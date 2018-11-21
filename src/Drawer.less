@@ -8,6 +8,7 @@
 
 @__drawerPrefixCls: kuma-drawer;
 @_dialogPrefixCls: kuma-dlg;
+@diff : 0px;
 .@{__drawerPrefixCls} {
   position: fixed;
   height: 100%;
@@ -22,9 +23,13 @@
     position: initial;
     height: 100%;
     box-shadow: none;
+    display: flex;
+    flex-direction: column;
   }
   .@{_dialogPrefixCls}-body {
     overflow: auto;
+    flex: 1;
+    padding: 16px 24px 0px;
   }
   &-right {
     right: 0;
@@ -36,17 +41,12 @@
     top: 0;
     bottom: 0;
   }
-  &-hastitle {}
-  .@{_dialogPrefixCls}-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 65px;
-    overflow: hidden;
-  }
   .@{_dialogPrefixCls}-header {
+    flex: 0;
     border-bottom: 1px solid @split-line-color;
+  }
+  .@{_dialogPrefixCls}-footer {
+    flex: 0;
   }
   &.dialogFade-enter,
   &.dialogFade-appear {
