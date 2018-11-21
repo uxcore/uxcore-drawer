@@ -24,8 +24,6 @@ class Drawer extends React.Component {
   handleOptions() {
     const {
       placement,
-      showFooter,
-      footer,
       className,
       size,
       width,
@@ -39,14 +37,8 @@ class Drawer extends React.Component {
       transitionName: `dialogSlide${placementStr}`,
       ...props,
     };
-    if (!showFooter) {
-      commonProps.footer = null;
-      return commonProps;
-    }
-    if (footer) {
-      commonProps.footer = footer;
-      return commonProps;
-    }
+    commonProps.footer = null;
+
     return commonProps;
   }
 
@@ -60,13 +52,16 @@ class Drawer extends React.Component {
     return widthMap[size];
   }
 
-
   render() {
     const { props } = this;
-    const { prefixCls, className, placement } = props;
+    const {
+      prefixCls, className, placement, title,
+    } = props;
     const classNames = classnames(className, {
       [`${prefixCls}`]: true,
       [`${prefixCls}-${placement}`]: true,
+      [`${prefixCls}-hastitle`]: !!title,
+
     });
     const drawerOptions = this.handleOptions();
     return (
@@ -86,15 +81,12 @@ Drawer.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
   visible: PropTypes.bool,
-  onOk: PropTypes.func,
   onCancel: PropTypes.func,
   width: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
   size: PropTypes.oneOf(['small', 'normal']),
-  showFooter: PropTypes.bool,
-  footer: PropTypes.node,
   closable: PropTypes.bool,
   maskClosable: PropTypes.bool,
   locale: PropTypes.string,
@@ -117,6 +109,5 @@ Drawer.defaultProps = {
   style: {},
   zIndex: 1000,
   placement: 'right',
-  showFooter: true,
 };
 export default Drawer;
