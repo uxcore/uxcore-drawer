@@ -63,10 +63,11 @@ class Drawer extends React.Component {
   render() {
     const { props } = this;
     const {
-      prefixCls, className, placement, title, showFooter,
+      prefixCls, className, placement, title, showFooter, size,
     } = props;
     const classNames = classnames(className, {
       [`${prefixCls}`]: true,
+      [`${prefixCls}-${size}`]: true,
       [`${prefixCls}-${placement}`]: true,
       [`${prefixCls}-hastitle`]: !!title,
       [`${prefixCls}-hasfooter`]: showFooter,
