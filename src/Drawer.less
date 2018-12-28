@@ -16,6 +16,9 @@
   background: #fff;
   overflow: hidden;
   z-index: 1000;
+  .kuma-dlg-close {
+    z-index: 999;
+  }
   &.@{_dialogPrefixCls} {
     position: fixed;
   }
@@ -27,9 +30,11 @@
     flex-direction: column;
   }
   .@{_dialogPrefixCls}-body {
-    overflow: auto;
+    width: 100%;
     flex: 1;
     padding: 16px 24px 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   &-right {
     right: 0;
