@@ -72,7 +72,7 @@ class Demo extends React.Component {
         </div>
         <div className="basic-demo">
           <h2>展示基本信息，无操作按钮，点击遮罩层可以关闭</h2>
-          <p>遮罩层分为 small(400px) medium(780px)，large(1160px)三种size,也可自定义width</p>
+          <p>遮罩层分为 small(400px) normal(780px)，large(1160px)三种size,也可自定义width</p>
           <Button onClick={this.showDrawer.bind(this, 'basicVisible')}> 基本信息 </Button>
         </div>
         <div className="basic-demo">
