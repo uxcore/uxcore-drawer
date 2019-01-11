@@ -54,10 +54,10 @@ class Drawer extends React.Component {
     if (this.children) {
       if (this.children.props.visible) {
         styleObject.transform = this.getTransForm();
-        styleObject.transition = 'transform .3s ease ';
+        styleObject.transition = 'transform .4s ease ';
       } else if (visible) {
         styleObject.transform = 'translateX(0)';
-        styleObject.transition = 'transform .3s ease ';
+        styleObject.transition = 'transform .4s ease ';
       }
     }
     return styleObject;
