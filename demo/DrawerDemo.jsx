@@ -162,7 +162,7 @@ class Demo extends React.Component {
           <Drawer
             visible={zoneVisible}
             title="二级组件"
-            size="medium"
+            size="normal"
             placement="right"
             onOk={this.handleOk}
             closable={false}

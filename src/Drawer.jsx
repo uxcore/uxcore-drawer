@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Dialog from 'uxcore-dialog';
 
-const WIDTH_MAP = { small: 400, medium: 780, large: 1160 };
+const WIDTH_MAP = { small: 400, normal: 780, large: 1160 };
 
 class Drawer extends React.Component {
   constructor(props) {
@@ -160,7 +160,7 @@ Drawer.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['small', 'normal', 'large']),
   showFooter: PropTypes.bool,
   footer: PropTypes.node,
   closable: PropTypes.bool,
