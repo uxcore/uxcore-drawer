@@ -50,7 +50,7 @@ https://github.com/uxcore/uxcore-drawer
 | title      | Title of the drawer | String/React.Element    | 无 |
 | visible    | current drawer's visible status  | Boolean    | false |
 | placement   | current drawer's direction  | left/right    | right |
-|size         | current drawer's size | small(230px)/normal(600px),large(1160px) | noraml|
+|size         | current drawer's size | small(400px)/normal(780px),large(1160px) | noraml|
 | onOk       | the callback when ok clicked | function | 无 |
 | onCancel   | the callback when dialog closed  | function  | 无  |
 | width      | drawer width | String or Number |            |
