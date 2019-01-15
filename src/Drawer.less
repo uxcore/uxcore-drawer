@@ -20,6 +20,11 @@
   .kuma-dlg-close {
     z-index: 999;
   }
+  &.@{__drawerPrefixCls}-normal {
+    .@{_dialogPrefixCls}-close-x {
+      font-size: 14px;
+    }
+  }
   &.@{_dialogPrefixCls} {
     position: fixed;
   }
@@ -27,7 +32,7 @@
     position: initial;
     height: 100%;
     box-shadow: none;
-    display: flex;
+    display: flex; // display: -webkit-box;
     flex-direction: column;
   }
   .@{_dialogPrefixCls}-title {
