@@ -15,6 +15,7 @@
   min-width: 263px;
   background: #fff;
   overflow: hidden;
+  box-shadow: 0px 2px 12px 0px rgba(31, 56, 88, 0.15);
   z-index: 1000;
   .kuma-dlg-close {
     z-index: 999;
@@ -33,6 +34,9 @@
     box-shadow: none;
     display: flex; // display: -webkit-box;
     flex-direction: column;
+  }
+  .@{_dialogPrefixCls}-title {
+    padding: 14px 20px;
   }
   .@{_dialogPrefixCls}-body {
     width: 100%;
@@ -62,7 +66,7 @@
   &.dialogFade-appear {
     opacity: 0;
     animation-timing-function: @transition-ease;
-    animation-duration: .4s;
+    animation-duration: .5s;
   }
   &.dialogFade-enter-active,
   &.dialogFade-appear-active {
@@ -71,7 +75,7 @@
   &.dialogFade-leave {
     opacity: 1;
     animation-timing-function: @transition-ease;
-    animation-duration: .4s;
+    animation-duration: .5s;
   }
   &.dialogFade-leave-active {
     animation-name: drawerFadeOut;
@@ -79,7 +83,7 @@
   &.dialogSlideRight-enter,
   &.dialogSlideRight-appear {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(100px);
     animation-timing-function: @transition-ease;
     animation-duration: .5s;
   }
@@ -94,11 +98,12 @@
   }
   &.dialogSlideRight-leave-active {
     animation-name: drawerSlideOutRight;
+    animation-duration: .5s;
   }
   &.dialogSlideLeft-enter,
   &.dialogSlideLeft-appear {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(-100px);
     animation-timing-function: @transition-ease;
     animation-duration: .5s;
   }
@@ -113,13 +118,14 @@
   }
   &.dialogSlideLeft-leave-active {
     animation-name: drawerSlideOutLeft;
+    animation-duration: .5s;
   }
 }
 
 @keyframes drawerSlideInRight {
   0% {
-    opacity: 0;
-    transform: translateX(30px);
+    opacity: 1;
+    transform: translateX(100px);
   }
   100% {
     opacity: 1;
@@ -133,15 +139,15 @@
     -webkit-transform: translateX(0%);
   }
   100% {
-    opacity: 0;
-    -webkit-transform: translateX(30px);
+    opacity: 1;
+    -webkit-transform: translateX(100%);
   }
 }
 
 @keyframes drawerSlideInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-100px);
   }
   100% {
     opacity: 1;
@@ -155,19 +161,8 @@
     -webkit-transform: translateX(0%);
   }
   100% {
-    opacity: 0;
-    -webkit-transform: translateX(-30px);
-  }
-}
-
-@keyframes drawerSlideOutRight {
-  0% {
     opacity: 1;
-    transform: translateX(0%);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(50px);
+    -webkit-transform: translateX(-100%);
   }
 }
 

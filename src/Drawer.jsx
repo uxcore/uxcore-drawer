@@ -10,11 +10,72 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Dialog from 'uxcore-dialog';
 
+const WIDTH_MAP = { small: 400, normal: 780, large: 1160 };
+
 class Drawer extends React.Component {
   constructor(props) {
     super(props);
     this.handleWidth = this.handleWidth.bind(this);
     this.handleOptions = this.handleOptions.bind(this);
+    this.getStyle = this.getStyle.bind(this);
+    this.getChild = this.getChild.bind(this);
+    this.children = null;
+  }
+
+  getChild() {
+    const { children } = this.props;
+    const childrens = React.Children.toArray(children);
+    childrens.forEach((child) => {
+      const { type } = child;
+      if (type && type.displayName === 'Drawer') {
+        this.children = child;
+      }
+    });
+  }
+
+
+  getStyle() {
+    const {
+      zIndex,
+      style,
+      visible,
+    } = this.props;
+
+    const styleObject = {
+      zIndex,
+      transition: null,
+      ...style,
+    };
+
+    if (visible) {
+      this.getChild();
+    }
+
+    if (this.children) {
+      if (this.children.props.visible) {
+        styleObject.transform = this.getTransForm();
+        styleObject.transition = 'transform .4s ease ';
+      } else if (visible) {
+        styleObject.transform = 'translateX(0)';
+        styleObject.transition = 'transform .4s ease ';
+      }
+    }
+    return styleObject;
+  }
+
+  getTransForm() {
+    const { placement } = this.props;
+    const childWidth = this.handleWidth(this.children.props);
+    let dist = this.showWidth - childWidth;
+    if (dist < 0) {
+      dist = Math.abs(dist) + 230;
+    } else {
+      dist = dist > 230 ? 230 : (230 + childWidth - this.showWidth);
+    }
+    if (placement === 'left') {
+      return `translateX(${dist}px)`;
+    }
+    return `translateX(-${dist}px)`;
   }
 
   firstUpperCase(str) {
@@ -30,15 +91,17 @@ class Drawer extends React.Component {
       size,
       width,
       prefixCls,
+      style,
       ...props
     } = this.props;
     const placementStr = this.firstUpperCase(placement);
-
+    const showWidth = this.handleWidth();
     const commonProps = {
-      width: this.handleWidth(),
+      width: showWidth,
       transitionName: `dialogSlide${placementStr}`,
       ...props,
     };
+    this.showWidth = showWidth;
     if (!showFooter) {
       commonProps.footer = null;
       return commonProps;
@@ -50,14 +113,16 @@ class Drawer extends React.Component {
     return commonProps;
   }
 
-  handleWidth() {
-    const { size, width } = this.props;
-    if (width) {
-      return width;
+  handleWidth(comp) {
+    const { size, width } = comp || this.props;
+    let newWidth = width;
+    if (newWidth) {
+      if (newWidth.indexOf && newWidth.indexOf('px') > -1) {
+        newWidth = newWidth.replace('px', '');
+      }
+      return parseFloat(newWidth);
     }
-
-    const widthMap = { small: 230, normal: 600 };
-    return widthMap[size];
+    return WIDTH_MAP[size];
   }
 
   render() {
@@ -79,6 +144,7 @@ class Drawer extends React.Component {
         ref={(c) => { this.drawer = c; }}
         className={classNames}
         {...drawerOptions}
+        style={this.getStyle(drawerOptions.width)}
       />
     );
   }
@@ -95,7 +161,7 @@ Drawer.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
-  size: PropTypes.oneOf(['small', 'normal']),
+  size: PropTypes.oneOf(['small', 'normal', 'large']),
   showFooter: PropTypes.bool,
   footer: PropTypes.node,
   closable: PropTypes.bool,
@@ -111,7 +177,7 @@ Drawer.defaultProps = {
   className: '',
   title: '',
   visible: false,
-  size: 'normal',
+  size: 'small',
   width: '',
   closable: true,
   maskClosable: true,
@@ -121,5 +187,8 @@ Drawer.defaultProps = {
   zIndex: 1000,
   placement: 'right',
   showFooter: true,
+  onOk: null,
+  onCancel: null,
+  footer: null,
 };
 export default Drawer;

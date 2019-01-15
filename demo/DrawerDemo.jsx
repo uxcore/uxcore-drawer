@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { Button, Form } from 'uxcore';
+import Button from 'uxcore-button';
+import Form from 'uxcore-form';
 import Drawer from '../src';
-// import '../style';
+
 
 const {
   Constants,
@@ -28,6 +29,7 @@ class Demo extends React.Component {
       menuVisible: false,
       visible: false,
       mode: Constants.MODE.EDIT,
+      zoneVisible: false,
     };
     this.handleChangeMode = this.handleChangeMode.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -60,7 +62,7 @@ class Demo extends React.Component {
 
   render() {
     const {
-      visible, mode, basicVisible, menuVisible,
+      visible, mode, basicVisible, menuVisible, zoneVisible,
     } = this.state;
     return (
       <div>
@@ -70,7 +72,7 @@ class Demo extends React.Component {
         </div>
         <div className="basic-demo">
           <h2>展示基本信息，无操作按钮，点击遮罩层可以关闭</h2>
-          <p>遮罩层分为 small(230px) ，normal(600px)两种size,也可自定义width</p>
+          <p>遮罩层分为 small(400px) normal(780px)，large(1160px)三种size,也可自定义width</p>
           <Button onClick={this.showDrawer.bind(this, 'basicVisible')}> 基本信息 </Button>
         </div>
         <div className="basic-demo">
@@ -140,7 +142,7 @@ class Demo extends React.Component {
         <Drawer
           visible={basicVisible}
           title="基本信息展示"
-          size="normal"
+          width={600}
           placement="right"
           showFooter={false}
           closable={false}
@@ -150,19 +152,38 @@ class Demo extends React.Component {
           <p>text text text texttext</p>
           <p>text text text texttext</p>
           <p>text text text texttext</p>
+          <Button
+            onClick={this.showDrawer.bind(this, 'zoneVisible')}
+            style={{ marginTop: '20px' }}
+            key="show"
+          >
+            二级抽屉
+          </Button>
+          <Drawer
+            visible={zoneVisible}
+            title="二级组件"
+            size="normal"
+            placement="right"
+            onOk={this.handleOk}
+            closable={false}
+            showFooter={false}
+            onCancel={this.closeDrawer.bind(this, 'zoneVisible')}
+          >
+            <div>这是第二层的抽屉组件</div>
+          </Drawer>
         </Drawer>
         <Drawer
           visible={visible}
           title="抽屉组件"
-          size="normal"
+          size="small"
           placement="right"
           onOk={this.handleOk}
           maskClosable={false}
           onCancel={this.closeDrawer.bind(this, 'visible')}
           footer={[
             <p className="showNum">已选：33333</p>,
-            <Button onClick={this.handleOk.bind(this, 'visible')} key="submit">提交</Button>,
             <Button type="secondary" onClick={this.handleChangeMode} key="changeMode">转换模式</Button>,
+            <Button onClick={this.handleOk.bind(this, 'visible')} key="submit">提交</Button>,
           ]}
         >
           <div className="demo-mode" style={{ height: '1000px' }}>
