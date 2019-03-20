@@ -19,13 +19,14 @@ class Drawer extends React.Component {
     this.handleOptions = this.handleOptions.bind(this);
     this.getStyle = this.getStyle.bind(this);
     this.getChild = this.getChild.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
     this.children = null;
   }
 
   getChild() {
     const { children } = this.props;
     const childrens = React.Children.toArray(children);
-    childrens.forEach((child) => {
+    childrens.forEach(child => {
       const { type } = child;
       if (type && type.displayName === 'Drawer') {
         this.children = child;
@@ -33,13 +34,8 @@ class Drawer extends React.Component {
     });
   }
 
-
   getStyle() {
-    const {
-      zIndex,
-      style,
-      visible,
-    } = this.props;
+    const { zIndex, style, visible } = this.props;
 
     const styleObject = {
       zIndex,
@@ -70,7 +66,7 @@ class Drawer extends React.Component {
     if (dist < 0) {
       dist = Math.abs(dist) + 230;
     } else {
-      dist = dist > 230 ? 230 : (230 + childWidth - this.showWidth);
+      dist = dist > 230 ? 230 : 230 + childWidth - this.showWidth;
     }
     if (placement === 'left') {
       return `translateX(${dist}px)`;
@@ -80,6 +76,13 @@ class Drawer extends React.Component {
 
   firstUpperCase(str) {
     return str.toLowerCase().replace(/( |^)[a-z]/g, L => L.toUpperCase());
+  }
+
+  handleCancel(e) {
+    const { onCancel } = this.props;
+    if (onCancel) {
+      onCancel(e);
+    }
   }
 
   handleOptions() {
@@ -92,6 +95,7 @@ class Drawer extends React.Component {
       width,
       prefixCls,
       style,
+      onCancel,
       ...props
     } = this.props;
     const placementStr = this.firstUpperCase(placement);
@@ -127,22 +131,22 @@ class Drawer extends React.Component {
 
   render() {
     const { props } = this;
-    const {
-      prefixCls, className, placement, title, showFooter, size,
-    } = props;
+    const { prefixCls, className, placement, title, showFooter, size } = props;
     const classNames = classnames(className, {
       [`${prefixCls}`]: true,
       [`${prefixCls}-${size}`]: true,
       [`${prefixCls}-${placement}`]: true,
       [`${prefixCls}-hastitle`]: !!title,
       [`${prefixCls}-hasfooter`]: showFooter,
-
     });
     const drawerOptions = this.handleOptions();
     return (
       <Dialog
-        ref={(c) => { this.drawer = c; }}
+        ref={c => {
+          this.drawer = c;
+        }}
         className={classNames}
+        onCancel={this.handleCancel}
         {...drawerOptions}
         style={this.getStyle(drawerOptions.width)}
       />
@@ -157,10 +161,7 @@ Drawer.propTypes = {
   visible: PropTypes.bool,
   onOk: PropTypes.func,
   onCancel: PropTypes.func,
-  width: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   showFooter: PropTypes.bool,
   footer: PropTypes.node,

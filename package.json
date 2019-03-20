@@ -50,7 +50,7 @@
     "uxcore-tools": "^0.3.3"
   },
   "dependencies": {
-    "uxcore-dialog": "^0.8.5",
+    "uxcore-dialog": "^0.8.7",
     "classnames": "^2.1.2",
     "prop-types": "15.x"
   },
