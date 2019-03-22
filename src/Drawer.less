@@ -7,8 +7,10 @@
  */
 
 @__drawerPrefixCls: kuma-drawer;
-@_dialogPrefixCls: kuma-dlg;
+@__dialogPrefixCls: kuma-dlg;
+
 @diff : 0px;
+
 .@{__drawerPrefixCls} {
   position: fixed;
   height: 100%;
@@ -22,26 +24,26 @@
     z-index: 999;
   }
   &.@{__drawerPrefixCls}-normal {
-    .@{_dialogPrefixCls}-close-x {
+    .@{__dialogPrefixCls}-close-x {
       font-size: 14px;
     }
   }
-  &.@{_dialogPrefixCls} {
+  &.@{__dialogPrefixCls} {
     position: fixed;
   }
-  .@{_dialogPrefixCls}-content {
+  .@{__dialogPrefixCls}-content {
     position: initial;
     height: 100%;
     box-shadow: none;
     display: flex; // display: -webkit-box;
     flex-direction: column;
   }
-  .@{_dialogPrefixCls}-title {
+  .@{__dialogPrefixCls}-title {
     padding: 14px 20px;
     text-indent: 0;
     box-sizing: border-box;
   }
-  .@{_dialogPrefixCls}-body {
+  .@{__dialogPrefixCls}-body {
     width: 100%;
     flex: 1;
     padding: 16px 24px 0px;
@@ -58,11 +60,11 @@
     top: 0;
     bottom: 0;
   }
-  .@{_dialogPrefixCls}-header {
+  .@{__dialogPrefixCls}-header {
     flex: 0;
     border-bottom: 1px solid @split-line-color;
   }
-  .@{_dialogPrefixCls}-footer {
+  .@{__dialogPrefixCls}-footer {
     flex: 0;
   }
   &.dialogFade-enter,
