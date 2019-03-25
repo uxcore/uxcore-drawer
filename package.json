@@ -43,7 +43,6 @@
     "react-dom": "16.x",
     "react-test-renderer": "16.x",
     "uxcore-button": "^0.4.20",
-    "uxcore-dialog": "^0.8.5",
     "uxcore-form": "^7.2.3",
     "uxcore-icon": "*",
     "uxcore-kuma": "*",
