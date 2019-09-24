@@ -119,12 +119,8 @@ class Drawer extends React.Component {
 
   handleWidth(comp) {
     const { size, width } = comp || this.props;
-    let newWidth = width;
-    if (newWidth) {
-      if (newWidth.indexOf && newWidth.indexOf('px') > -1) {
-        newWidth = newWidth.replace('px', '');
-      }
-      return parseFloat(newWidth);
+    if (width) {
+      return width;
     }
     return WIDTH_MAP[size];
   }
@@ -171,7 +167,7 @@ Drawer.propTypes = {
   wrapClassName: PropTypes.string,
   style: PropTypes.object,
   zIndex: PropTypes.number,
-  placement: PropTypes.oneOf(['left', 'right']),
+  placement: PropTypes.oneOf(['left', 'right', 'top']),
 };
 Drawer.defaultProps = {
   prefixCls: 'kuma-drawer',
